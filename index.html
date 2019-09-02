@@ -1,25 +1,292 @@
-<!DOCTYPE html>
-<html>
-    <head lang="ja">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-        <title>SkyWay Handson</title>
-        <link rel="stylesheet" href="./shared/style.css">
-    </head>
-    <body>
-        <div class="videos-container">
-            <video id="js-local-video" autoplay muted="true"></video>
-            <video id="js-remote-video" autoplay muted="true"></video>
-        </div>
-        <div class="controller-container">
-            <p>Your id: <span id="js-local-id">...</span></p>
-            <input type="text" placeholder="Call peer id..." id="js-remote-id">
-            <button id="js-call-trigger">Call</button>
-            <p>Currently in call with <span id="js-connected-id">...</span></p>
-            <button id="js-close-trigger">End call</button>
-        </div>
+<!doctype html>
+<html lang="ja-JP">
+    <head >
+        <script>
+    var require = {
+        "baseUrl": "http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP"
+    };
+</script>
+        <meta charset="utf-8"/>
+<meta name="description" content="Default Description"/>
+<meta name="keywords" content="Magento, Varien, E-commerce"/>
+<meta name="robots" content="INDEX,FOLLOW"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<title>Home page</title>
+<link  rel="stylesheet" type="text/css"  media="all" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/mage/calendar.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/css/styles-m.css" />
+<link  rel="stylesheet" type="text/css"  media="screen and (min-width: 768px)" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/css/styles-l.css" />
+<link  rel="stylesheet" type="text/css"  media="print" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/css/print.css" />
+<link  rel="icon" type="image/x-icon" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/Magento_Theme/favicon.ico" />
+<link  rel="shortcut icon" type="image/x-icon" href="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/Magento_Theme/favicon.ico" />
+<script  type="text/javascript"  src="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/requirejs/require.js"></script>
+<script  type="text/javascript"  src="http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/mage/requirejs/mixins.js"></script>
+<script  type="text/javascript"  src="http://35.190.236.97/pub/static/version1567440896/_requirejs/frontend/Magento/luma/ja_JP/requirejs-config.js"></script>
+            </head>
+    <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/images/loader-2.gif"}}' class="cms-home cms-index-index page-layout-1column">
+            <script>
+        require.config({
+            deps: [
+                'jquery',
+                'mage/translate',
+                'jquery/jquery-storageapi'
+            ],
+            callback: function ($) {
+                'use strict';
 
-        <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-        <script type="text/javascript" src="./shared/key.js"></script>
-        <script type="text/javascript" src="./script.js"></script>
-    </body>
+                var dependencies = [],
+                    versionObj;
+
+                $.initNamespaceStorage('mage-translation-storage');
+                $.initNamespaceStorage('mage-translation-file-version');
+                versionObj = $.localStorage.get('mage-translation-file-version');
+
+                if (versionObj.version !== '42612688f4b8156a79b9ed76855ae1926fca07ce') {
+                    dependencies.push(
+                        'text!js-translation.json'
+                    );
+
+                }
+
+                require.config({
+                    deps: dependencies,
+                    callback: function (string) {
+                        if (typeof string === 'string') {
+                            $.mage.translate.add(JSON.parse(string));
+                            $.localStorage.set('mage-translation-storage', string);
+                            $.localStorage.set(
+                                'mage-translation-file-version',
+                                {
+                                    version: '42612688f4b8156a79b9ed76855ae1926fca07ce'
+                                }
+                            );
+                        } else {
+                            $.mage.translate.add($.localStorage.get('mage-translation-storage'));
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "mage/cookies": {
+                "expires": null,
+                "path": "/",
+                "domain": "35.190.236.97",
+                "secure": false,
+                "lifetime": "3600"
+            }
+        }
+    }
+</script>
+    <noscript>
+        <div class="message global noscript">
+            <div class="content">
+                <p>
+                    <strong>JavaScript seems to be disabled in your browser.</strong>
+                    <span>For the best experience on our site, be sure to turn on Javascript in your browser.</span>
+                </p>
+            </div>
+        </div>
+    </noscript>
+<div class="page-wrapper"><header class="page-header"><div class="panel wrapper"><div class="panel header"><a class="action skip contentarea" href="#contentarea"><span>Skip to Content</span></a>
+
+<ul class="header links">        <li class="greet welcome" data-bind="scope: 'customer'">
+            <!-- ko if: customer().fullname  -->
+            <span data-bind="text: new String('Welcome, %1!').replace('%1', customer().firstname)">
+            </span>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().fullname  -->
+            <span data-bind="html:'Default welcome msg!'"></span>
+            <!-- /ko -->
+        </li>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    <li class="authorization-link" data-label="or">
+    <a href="http://35.190.236.97/customer/account/login/">
+        Sign In    </a>
+</li>
+<li><a href="http://35.190.236.97/customer/account/create/" >Create an Account</a></li></ul></div></div><div class="header content"><span data-action="toggle-nav" class="action nav-toggle"><span>Toggle Nav</span></span>
+    <strong class="logo">
+        <img src="http://35.190.236.97/pub/media/logo/stores/1/TREE1.png"
+             alt="Magento Commerce"
+             width="148"             height="43"        />
+    </strong>
+
+<div data-block="minicart" class="minicart-wrapper">
+    <a class="action showcart" href="http://35.190.236.97/checkout/cart/"
+       data-bind="scope: 'minicart_content'">
+        <span class="text">My Cart</span>
+        <span class="counter qty empty"
+              data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+            <span class="counter-label">
+            <!-- ko if: getCartParam('summary_count') -->
+                <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+                <!-- ko i18n: 'items' --><!-- /ko -->
+            <!-- /ko -->
+            </span>
+        </span>
+    </a>
+            <div class="block block-minicart empty"
+             data-role="dropdownDialog"
+             data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=minicart]",
+                "triggerTarget":".showcart",
+                "timeout": "2000",
+                "closeOnMouseLeave": false,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":[]}}'>
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+                    </div>
+        <script>
+        window.checkout = {"shoppingCartUrl":"http:\/\/35.190.236.97\/checkout\/cart\/","checkoutUrl":"http:\/\/35.190.236.97\/checkout\/","updateItemQtyUrl":"http:\/\/35.190.236.97\/checkout\/sidebar\/updateItemQty\/","removeItemUrl":"http:\/\/35.190.236.97\/checkout\/sidebar\/removeItem\/","imageTemplate":"Magento_Catalog\/product\/image_with_borders","baseUrl":"http:\/\/35.190.236.97\/","minicartMaxItemsVisible":5,"websiteId":"1","maxItemsToDisplay":10,"customerLoginUrl":"http:\/\/35.190.236.97\/customer\/account\/login\/","isRedirectRequired":false,"autocomplete":"off","captcha":{"user_login":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"http:\/\/35.190.236.97\/captcha\/refresh\/","isRequired":false},"guest_checkout":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"http:\/\/35.190.236.97\/captcha\/refresh\/","isRequired":false}}};
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart']": {
+            "Magento_Ui/js/core/app": {"components":{"minicart_content":{"children":{"subtotal.container":{"children":{"subtotal":{"children":{"subtotal.totals":{"config":{"display_cart_subtotal_incl_tax":0,"display_cart_subtotal_excl_tax":1,"template":"Magento_Tax\/checkout\/minicart\/subtotal\/totals"},"children":{"subtotal.totals.msrp":{"component":"Magento_Msrp\/js\/view\/checkout\/minicart\/subtotal\/totals","config":{"displayArea":"minicart-subtotal-hidden","template":"Magento_Msrp\/checkout\/minicart\/subtotal\/totals"}}},"component":"Magento_Tax\/js\/view\/checkout\/minicart\/subtotal\/totals"}},"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/subtotal"}}},"component":"uiComponent","config":{"displayArea":"subtotalContainer"}},"item.renderer":{"component":"uiComponent","config":{"displayArea":"defaultRenderer","template":"Magento_Checkout\/minicart\/item\/default"},"children":{"item.image":{"component":"Magento_Catalog\/js\/view\/image","config":{"template":"Magento_Catalog\/product\/image","displayArea":"itemImage"}},"checkout.cart.item.price.sidebar":{"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/item\/price","displayArea":"priceSidebar"}}}},"extra_info":{"component":"uiComponent","config":{"displayArea":"extraInfo"}},"promotion":{"component":"uiComponent","config":{"displayArea":"promotion"}}},"config":{"itemRenderer":{"default":"defaultRenderer","simple":"defaultRenderer","virtual":"defaultRenderer"},"template":"Magento_Checkout\/minicart\/content"},"component":"Magento_Checkout\/js\/view\/minicart"}},"types":[]}        },
+        "*": {
+            "Magento_Ui/js/block-loader": "http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/images/loader-1.gif"
+        }
+    }
+    </script>
+</div>
+
+
+<div class="block block-search">
+    <div class="block block-title"><strong>Search</strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="http://35.190.236.97/catalogsearch/result/" method="get">
+            <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span>Search</span>
+                </label>
+                <div class="control">
+                    <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"http://35.190.236.97/search/ajax/suggest/",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="q"
+                           value=""
+                           placeholder="Search entire store here..."
+                           class="input-text"
+                           maxlength="128"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <div class="nested">
+    <a class="action advanced" href="http://35.190.236.97/catalogsearch/advanced/" data-action="advanced-search">
+        Advanced Search    </a>
+</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="Search"
+                        class="action search">
+                    <span>Search</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<ul class="compare wrapper"><li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link">
+    <a class="action compare no-display" title="Compare Products"
+       data-bind="attr: {'href': compareProducts().listUrl}, css: {'no-display': !compareProducts().count}"
+    >
+        Compare Products        <span class="counter qty" data-bind="text: compareProducts().countCaption"></span>
+    </a>
+</li>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-link]": {"Magento_Ui/js/core/app": {"components":{"compareProducts":{"component":"Magento_Catalog\/js\/view\/compare-products"}}}}}
+</script>
+</ul></div></header>    <div class="sections nav-sections">
+                <div class="section-items nav-sections-items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                                            <div class="section-item-title nav-sections-item-title" data-role="collapsible">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.menu">Menu</a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.menu" data-role="content">
+<nav class="navigation" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+                    </ul>
+</nav>
+</div>
+                                            <div class="section-item-title nav-sections-item-title" data-role="collapsible">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.links">Account</a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.links" data-role="content"><!-- Account links --></div>
+                                    </div>
+    </div>
+<main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
+
+    <div class="videos-container">
+        <video id="js-local-video" autoplay muted="true"></video>
+        <video id="js-remote-video" autoplay muted="true"></video>
+    </div>
+    <div class="controller-container">
+        <p>Your id: <span id="js-local-id">...</span></p>
+        <input type="text" placeholder="Call peer id..." id="js-remote-id">
+        <button id="js-call-trigger">Call</button>
+        <p>Currently in call with <span id="js-connected-id">...</span></p>
+        <button id="js-close-trigger">End call</button>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+    <script type="text/javascript" src="./shared/key.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
+
+
+</main>
+<footer class="page-footer"><div class="footer content"><div class="block newsletter">
+    <div class="title"><strong>Newsletter</strong></div>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="http://35.190.236.97/newsletter/subscriber/new/"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <label class="label" for="newsletter"><span>Sign Up for Our Newsletter:</span></label>
+                <div class="control">
+                    <input name="email" type="email" id="newsletter"
+                                placeholder="Enter your email address"
+                                data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" title="Subscribe" type="submit">
+                    <span>Subscribe</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<ul class="footer links"><li class="nav item"><a href="http://35.190.236.97/privacy-policy-cookie-restriction-mode/">Privacy and Cookie Policy</a></li><li class="nav item"><a href="http://35.190.236.97/search/term/popular/">Search Terms</a></li><li class="nav item"><a href="http://35.190.236.97/contact/">Contact Us</a></li><li class="nav item"><a href="http://35.190.236.97/sales/guest/form/">Orders and Returns</a></li><li class="nav item"><a href="http://35.190.236.97/catalogsearch/advanced/" data-action="advanced-search">Advanced Search</a></li></ul></div></footer><small class="copyright">
+    <span>Copyright © 2017 Magento, Inc. All rights reserved.</span>
+</small>
+</div>    </body>
 </html>
