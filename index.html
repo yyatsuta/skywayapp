@@ -18,50 +18,7 @@
 <script  type="text/javascript"  src="http://35.190.236.97/pub/static/version1567440896/_requirejs/frontend/Magento/luma/ja_JP/requirejs-config.js"></script>
             </head>
     <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/images/loader-2.gif"}}' class="cms-home cms-index-index page-layout-1column">
-            <script>
-        require.config({
-            deps: [
-                'jquery',
-                'mage/translate',
-                'jquery/jquery-storageapi'
-            ],
-            callback: function ($) {
-                'use strict';
 
-                var dependencies = [],
-                    versionObj;
-
-                $.initNamespaceStorage('mage-translation-storage');
-                $.initNamespaceStorage('mage-translation-file-version');
-                versionObj = $.localStorage.get('mage-translation-file-version');
-
-                if (versionObj.version !== '42612688f4b8156a79b9ed76855ae1926fca07ce') {
-                    dependencies.push(
-                        'text!js-translation.json'
-                    );
-
-                }
-
-                require.config({
-                    deps: dependencies,
-                    callback: function (string) {
-                        if (typeof string === 'string') {
-                            $.mage.translate.add(JSON.parse(string));
-                            $.localStorage.set('mage-translation-storage', string);
-                            $.localStorage.set(
-                                'mage-translation-file-version',
-                                {
-                                    version: '42612688f4b8156a79b9ed76855ae1926fca07ce'
-                                }
-                            );
-                        } else {
-                            $.mage.translate.add($.localStorage.get('mage-translation-storage'));
-                        }
-                    }
-                });
-            }
-        });
-    </script>
 
 <script type="text/x-magento-init">
     {
