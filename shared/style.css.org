@@ -109,3 +109,7 @@ button:hover {
     /* 透明度を20%に指定 */
     opacity: 0.8;
 }
+
+＃js-local-id　{
+    color: #000；
+}
