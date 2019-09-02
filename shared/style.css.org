@@ -110,6 +110,6 @@ button:hover {
     opacity: 0.8;
 }
 
-＃js-local-id　{
+span＃js-local-id　{
     color: #000；
 }
