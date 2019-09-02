@@ -193,70 +193,27 @@
                                     </div>
     </div>
 <main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
-<div class="page-title-wrapper">
-    <h1 class="page-title"
-                >
-        <span class="base" data-ui-id="page-title-wrapper" >Home Page</span>    </h1>
-    </div>
-<div class="page messages"><div data-placeholder="messages"></div>
-<div data-bind="scope: 'messages'">
-    <div data-bind="foreach: { data: cookieMessages, as: 'message' }" class="messages">
-        <div data-bind="attr: {
-            class: 'message-' + message.type + ' ' + message.type + ' message',
-            'data-ui-id': 'message-' + message.type
-        }">
-            <div data-bind="html: message.text"></div>
+
+    <div class="videos-container">
+            <video id="js-local-video" autoplay muted="true"></video>
+            <video id="js-remote-video" autoplay muted="true"></video>
         </div>
-    </div>
-    <div data-bind="foreach: { data: messages().messages, as: 'message' }" class="messages">
-        <div data-bind="attr: {
-            class: 'message-' + message.type + ' ' + message.type + ' message',
-            'data-ui-id': 'message-' + message.type
-        }">
-            <div data-bind="html: message.text"></div>
+        <div class="controller-container">
+            <p>Your id: <span id="js-local-id">...</span></p>
+            <input type="text" placeholder="Call peer id..." id="js-remote-id">
+            <button id="js-call-trigger">Call</button>
+            <p>Currently in call with <span id="js-connected-id">...</span></p>
+            <button id="js-close-trigger">End call</button>
         </div>
-    </div>
-</div>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Ui/js/core/app": {
-                "components": {
-                        "messages": {
-                            "component": "Magento_Theme/js/view/messages"
-                        }
-                    }
-                }
-            }
-    }
-</script>
-</div><div class="columns"><div class="column main"><input name="form_key" type="hidden" value="5IhafHTYgSi2gtyG" /><div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
-    <script>
-        window.authenticationPopup = {"customerRegisterUrl":"http:\/\/35.190.236.97\/customer\/account\/create\/","customerForgotPasswordUrl":"http:\/\/35.190.236.97\/customer\/account\/forgotpassword\/","baseUrl":"http:\/\/35.190.236.97\/"};
-    </script>
-    <!-- ko template: getTemplate() --><!-- /ko -->
-    <script type="text/x-magento-init">
-        {
-            "#authenticationPopup": {
-                "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"}}}}}            },
-            "*": {
-                "Magento_Ui/js/block-loader": "http://35.190.236.97/pub/static/version1567440896/frontend/Magento/luma/ja_JP/images/loader-1.gif"
-            }
-        }
-    </script>
-</div>
-<script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/section-config":{"sections":{"stores\/store\/switch":"*","directory\/currency\/switch":"*","*":["messages"],"customer\/account\/logout":"*","customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/ajax\/login":["checkout-data","cart"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart"],"checkout\/cart\/delete":["cart"],"checkout\/cart\/updatepost":["cart"],"checkout\/cart\/updateitemoptions":["cart"],"checkout\/cart\/couponpost":["cart"],"checkout\/cart\/estimatepost":["cart"],"checkout\/cart\/estimateupdatepost":["cart"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items"],"checkout\/sidebar\/removeitem":["cart"],"checkout\/sidebar\/updateitemqty":["cart"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","checkout-data","last-ordered-items"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart","checkout-data"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data"],"multishipping\/checkout\/overviewpost":["cart"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"review\/product\/post":["review"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"braintree\/paypal\/placeorder":["cart","checkout-data"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"]},"clientSideSections":["checkout-data"],"baseUrls":["http:\/\/35.190.236.97\/"]}}}</script>
-<script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/customer-data":{"sectionLoadUrl":"http:\/\/35.190.236.97\/customer\/section\/load\/","cookieLifeTime":"3600","updateSessionUrl":"http:\/\/35.190.236.97\/customer\/account\/updateSession\/"}}}</script>
-<script type="text/x-magento-init">
-    {
-        "body": {
-            "pageCache": {"url":"http:\/\/35.190.236.97\/page_cache\/block\/render\/","handles":["default","cms_index_index","cms_page_view","cms_index_index_id_home","gl_remove_compare_products"],"originalRequest":{"route":"cms","controller":"index","action":"index","uri":"\/"},"versionCookieName":"private_content_version"}        }
-    }
-</script>
-<p>CMS homepage content goes here.</p>
-</div></div></main><footer class="page-footer"><div class="footer content"><div class="block newsletter">
+
+        <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+        <script type="text/javascript" src="./shared/key.js"></script>
+        <script type="text/javascript" src="./script.js"></script>
+
+
+</main>
+
+<footer class="page-footer"><div class="footer content"><div class="block newsletter">
     <div class="title"><strong>Newsletter</strong></div>
     <div class="content">
         <form class="form subscribe"
